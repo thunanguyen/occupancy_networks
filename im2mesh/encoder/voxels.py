@@ -13,7 +13,7 @@ class VoxelEncoder(nn.Module):
 
     def __init__(self, dim=3, c_dim=128):
         super().__init__()
-        self.actvn = F.relu
+        self.actvn = lambda x: torch.sin(x) #F.relu
 
         self.conv_in = nn.Conv3d(1, 32, 3, padding=1)
 

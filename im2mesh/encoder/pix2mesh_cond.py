@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 
 
@@ -17,7 +18,7 @@ class Pix2mesh_Cond(nn.Module):
                     should be returned
         '''
         super().__init__()
-        actvn = nn.ReLU()
+        actvn = lambda x: torch.sin(x) #nn.ReLU()
         self.return_feature_maps = return_feature_maps
         num_fm = int(c_dim/32)
         if num_fm != 16:

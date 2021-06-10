@@ -87,9 +87,9 @@ void grid_pooling_kernel_forward(
     at::Tensor shape,
     at::Tensor feat_cell,  
     at::Tensor indices){
-  int W = shape.data<long>()[0];
-  int H = shape.data<long>()[1];
-  int D = shape.data<long>()[2];
+  int W = shape.data<int64_t>()[0];
+  int H = shape.data<int64_t>()[1];
+  int D = shape.data<int64_t>()[2];
   int C = feat_cell.size(1);
 
   dim3 dimGrid(W, H, D);
@@ -118,9 +118,9 @@ void grid_pooling_kernel_backward(
     at::Tensor shape, 
     at::Tensor indices,
     at::Tensor grad_feat_points){
-  int W = shape.data<long>()[0];
-  int H = shape.data<long>()[1];
-  int D = shape.data<long>()[2];
+  int W = shape.data<int64_t>()[0];
+  int H = shape.data<int64_t>()[1];
+  int D = shape.data<int64_t>()[2];
   int C = grad_output.size(1);
   dim3 dimGrid(W, H, D);
   dim3 dimBlock(C, 1, 1);

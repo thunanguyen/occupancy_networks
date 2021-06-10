@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 
 
@@ -13,7 +14,7 @@ class PCGN_Cond(nn.Module):
     '''
     def __init__(self, c_dim=512):  
         super().__init__()
-        actvn = nn.ReLU()
+        actvn = torch.sin(x) #nn.ReLU()
         num_fm = int(c_dim/32)
 
         self.conv_block1 = nn.Sequential(

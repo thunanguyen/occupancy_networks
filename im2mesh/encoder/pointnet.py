@@ -28,7 +28,7 @@ class SimplePointnet(nn.Module):
         self.fc_3 = nn.Linear(2*hidden_dim, hidden_dim)
         self.fc_c = nn.Linear(hidden_dim, c_dim)
 
-        self.actvn = nn.ReLU()
+        self.actvn = lambda x: torch.sin(x) #nn.ReLU()
         self.pool = maxpool
 
     def forward(self, p):
@@ -79,7 +79,7 @@ class ResnetPointnet(nn.Module):
         self.block_4 = ResnetBlockFC(2*hidden_dim, hidden_dim)
         self.fc_c = nn.Linear(hidden_dim, c_dim)
 
-        self.actvn = nn.ReLU()
+        self.actvn = lambda x: torch.sin(x) #nn.ReLU()
         self.pool = maxpool
 
     def forward(self, p):

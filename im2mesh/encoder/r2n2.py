@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 # import torch.nn.functional as F
 from im2mesh.common import normalize_imagenet
@@ -12,7 +13,7 @@ class SimpleConv(nn.Module):
 
     def __init__(self, c_dim=1024):
         super().__init__()
-        actvn = nn.LeakyReLU()
+        actvn = lambda x: torch.sin(x) #nn.LeakyReLU()
         pooling = nn.MaxPool2d(2, padding=1)
         self.convnet = nn.Sequential(
             nn.Conv2d(3, 96, 7, padding=3),

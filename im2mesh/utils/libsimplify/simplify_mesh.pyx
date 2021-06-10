@@ -1,5 +1,6 @@
 # distutils: language = c++
 from libcpp.vector cimport vector
+from libc.stdint cimport int64_t, uint64_t
 import numpy as np
 cimport numpy as np
 
@@ -31,7 +32,7 @@ cdef extern from "Simplify.h" namespace "Simplify":
     cdef void simplify_mesh(int, double)
 
 
-cpdef mesh_simplify(double[:, ::1] vertices_in, long[:, ::1] triangles_in,
+cpdef mesh_simplify(double[:, ::1] vertices_in, int64_t[:, ::1] triangles_in,
                         int f_target, double agressiveness=7.) except +:
     vertices.clear()
     triangles.clear()
@@ -70,7 +71,7 @@ cpdef mesh_simplify(double[:, ::1] vertices_in, long[:, ::1] triangles_in,
     triangles_out = np.empty((triangles_notdel.size(), 3), dtype=np.int64)
     
     cdef double[:, :] vertices_out_view = vertices_out
-    cdef long[:, :] triangles_out_view = triangles_out
+    cdef int64_t[:, :] triangles_out_view = triangles_out
 
     for iv in range(vertices.size()):
         vertices_out_view[iv, 0] = vertices[iv].p.x

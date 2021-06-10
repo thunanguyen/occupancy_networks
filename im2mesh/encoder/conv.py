@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 # import torch.nn.functional as F
 from torchvision import models
@@ -23,7 +24,7 @@ class ConvEncoder(nn.Module):
         self.conv3 = nn.Conv2d(128, 256, 3, stride=2)
         self.conv4 = nn.Conv2d(256, 512, 3, stride=2)
         self.fc_out = nn.Linear(512, c_dim)
-        self.actvn = nn.ReLU()
+        self.actvn = lambda x: torch.sin(x) #nn.ReLU()
 
     def forward(self, x):
         batch_size = x.size(0)
